@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HomeComponent } from './main/home/home.component';
 import { PrimengModule } from './primeng/primeng.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,7 +21,7 @@ import { TopBarComponent } from './layout/top-bar/top-bar.component';
     BrowserModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

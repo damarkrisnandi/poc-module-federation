@@ -34,6 +34,7 @@ module.exports = {
         filename: "remoteEntry.js",
         exposes: {
             './MainModule': './projects/main-page-app/src/app/main/main.module.ts',
+            './ContactModule': './projects/main-page-app/src/app/contact/contact.module.ts',
         },
 
         // For hosts (please adjust)

@@ -16,7 +16,7 @@ export class TopBarComponent implements OnInit {
     this.items = [
       {label: 'Home', icon: 'pi pi-home', routerLink: '/home'},
       {label: 'Berita', icon: 'pi pi-book', routerLink: '/main'},
-      // {label: 'Kontak', icon: 'pi pi-phone', routerLink: '/home'}
+      {label: 'Kontak', icon: 'pi pi-phone', routerLink: '/contact'}
   ];
   }
 

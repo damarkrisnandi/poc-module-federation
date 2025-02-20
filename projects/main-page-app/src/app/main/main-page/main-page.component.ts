@@ -44,6 +44,7 @@ export class MainPageComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    console.log('masuk main page')
     this.dataKosong = false
     this.populateList('','')
   }

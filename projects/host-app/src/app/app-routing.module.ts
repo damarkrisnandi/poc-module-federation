@@ -8,7 +8,7 @@ const MAIN_APP_URL = "http://localhost:4203/remoteEntry.js"
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'home', component: AppComponent},
+  { path: 'home', component: HomeComponent},
   {
     path: 'main',
     loadChildren: () => {
@@ -16,7 +16,17 @@ const routes: Routes = [
         remoteEntry: MAIN_APP_URL,
         remoteName: "mainPageApp",
         exposedModule: "./MainModule"
-      }).then((m) => m.MainModule).catch(err => console.error('Error loading MainComponent:', err));
+      }).then(m => m.MainModule).catch(err => console.error('Error loading MainComponent:', err));
+    }
+  },
+  {
+    path: 'contact',
+    loadChildren: () => {
+      return loadRemoteModule({
+        remoteEntry: MAIN_APP_URL,
+        remoteName: "mainPageApp",
+        exposedModule: "./ContactModule"
+      }).then(m => m.ContactModule).catch(err => console.error('Error loading ContactComponent:', err));
     }
   },
 ];
