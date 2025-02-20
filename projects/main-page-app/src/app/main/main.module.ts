@@ -16,7 +16,12 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     BrowserModule,
-    MainRoutingModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: MainPageComponent
+      }
+    ])
   ]
 })
 export class MainModule {}
