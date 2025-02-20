@@ -19,7 +19,7 @@ import { RouterModule } from '@angular/router';
     RouterModule.forChild([
       {
         path: '',
-        component: MainPageComponent
+        component: MainPageComponent 
       }
     ])
   ]
