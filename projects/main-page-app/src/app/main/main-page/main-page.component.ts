@@ -1,6 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PluginOptions } from '../../plugins/plugin';
+import { LookupService } from '../../plugins/lookup.service';
 
 @Component({
   selector: 'app-main-page',
@@ -36,17 +38,21 @@ export class MainPageComponent implements OnInit {
     ketFilter: any;
     selectedData: any;
     dataKosong: boolean = false;
+    plugins: PluginOptions[] = [];
+    workflow: PluginOptions[] = [];
 
   constructor(
     public router: Router,
     public activeRoute: ActivatedRoute,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private lookupService: LookupService
     ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     console.log('masuk main page')
     this.dataKosong = false
     this.populateList('','')
+    this.plugins = await this.lookupService.lookup();
   }
 
   populateList(kat:any, filter: any){
@@ -109,11 +115,12 @@ export class MainPageComponent implements OnInit {
     if(filter){
       this.contents = this.contents.filter(data => data.judul.includes(filter.toUpperCase()))
     }
-    if(this.contents.length == 0){
+    if(!this.contents){
       console.log('kosong')
       this.dataKosong = true
       console.log(this.dataKosong)
     }
+    console.log('this.contents ',this.contents)
     console.log(this.dataKosong)
   }
 
@@ -151,6 +158,11 @@ export class MainPageComponent implements OnInit {
   hapusFilter(){
     this.selectedFilter = ''
     this.populateList('','')
+  }
+
+  posting(): void {
+    console.log('plugin ',this.plugins[0])
+    this.workflow.push(this.plugins[0]);
   }
 
 }

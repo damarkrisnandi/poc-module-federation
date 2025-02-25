@@ -1,41 +1,50 @@
-<!-- <div class="content">
-  <p-panel header="List Post" [toggleable]="false" [style]="{'margin-bottom':'20px', 'width':'100%'}">
-      <div class="grid col-12 md:col-12 lg:col-12" style="margin-top:10px">
-          <div class="col-6 md:col-6 lg:col-6" style="text-align: right;">
-              <span class="p-input-icon-left">
-                  <i class="pi pi-search"></i>
-                  <input type="text" pInputText placeholder="Cari Judul" [(ngModel)]="cariJudul"
-                      (keyup.enter)="cari()" />
-              </span>
-          </div>
-          <div class="col-5 md:col-5 lg:col-5" style="text-align: left;">
-              <i class="pi pi-filter"></i>&nbsp;
-              <p-cascadeSelect icon="pi pi-filter" [(ngModel)]="selectedFilter" [options]="jenisFilter"
-                  optionLabel="itemName" optionGroupLabel="name" [optionGroupChildren]="['items']"
-                  [style]="{'minWidth': '14rem'}" placeholder="Pilih Filter"
-                  (onChange)="filtering()"></p-cascadeSelect>
-              &nbsp;
-          </div>
-      </div>
-      <br>
-      <div *ngIf="selectedFilter">
-          <h4>Data difilter berdasarkan {{ketFilter}}</h4>
-          <a (click)="hapusFilter()" style="color: blue;">Hapus Filter</a>
-          <br>
-      </div>
-      <p-card [style]="{'width': '100%'}" *ngIf="dataKosong">
-          <div>
-              <h4>Tidak Ada Postingan.</h4>
-          </div>
-      </p-card>
-      <p-card [style]="{'width': '100%', 'margin-bottom': '2em'}" *ngFor="let content of contents"
-          [header]="content.judul">
-          <div>
-              {{(readMore) ? content.isi : content.isi | slice:0:100}} <span *ngIf="!readMore">...</span> <br>
-              <a *ngIf="!readMore" (click)="viewPage(content)" style="color: blue;">[Read More]</a>
-          </div>
-      </p-card>
-  </p-panel>
-
-</div> -->
-<div>Main Page</div>
+<p-card>
+    <div class="grid" style="margin-top: 10px">
+        <div class="col-12 md:col-12 lg:col-12">
+            <span class="p-input-icon-left">
+                <i class="pi pi-pen"></i>
+                <p-button (click)="posting()">Buat Postingan</p-button>
+            </span>
+        </div>
+    </div>
+    <ng-container *ngFor="let p of workflow; let last = last">
+        <plugin-proxy [options]="p"></plugin-proxy>
+        <i *ngIf="!last" class="arrow right"></i>
+    </ng-container> 
+</p-card>
+<p-panel header="List Post" [toggleable]="false" [style]="{ 'margin-bottom': '20px', width: '100%' }">
+    <div class="grid" style="margin-top: 10px">
+        <div class="col-12 md:col-12 lg:col-12" style="text-align: right">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText placeholder="Cari Judul" [(ngModel)]="cariJudul" (keyup.enter)="cari()" />
+            </span>
+        </div>
+        <!-- <div class="col-5 md:col-5 lg:col-5" style="text-align: left">
+                <i class="pi pi-filter"></i>&nbsp;
+                <p-dropdown icon="pi pi-filter" [(ngModel)]="selectedFilter" [options]="jenisFilter"
+                    optionLabel="itemName" optionGroupLabel="name" [style]="{ minWidth: '14rem' }"
+                    placeholder="Pilih Filter" (onChange)="filtering()"></p-dropdown>
+                &nbsp;
+            </div> -->
+    </div>
+    <br />
+    <div *ngIf="selectedFilter">
+        <h4>Data difilter berdasarkan {{ ketFilter }}</h4>
+        <a (click)="hapusFilter()" style="color: blue">Hapus Filter</a>
+        <br />
+    </div>
+    <p-card [style]="{ width: '100%' }" *ngIf="dataKosong">
+        <div>
+            <h4>Tidak Ada Postingan.</h4>
+        </div>
+    </p-card>
+    <!-- <p-card [style]="{ width: '100%', 'margin-bottom': '2em' }" *ngFor="let content of contents"
+        [header]="content.judul">
+        <div>
+            {{ readMore ? content.isi : (content.isi | slice : 0 : 100) }}
+            <span *ngIf="!readMore">...</span> <br />
+            <a *ngIf="!readMore" (click)="viewPage(content)" style="color: blue">[Read More]</a>
+        </div>
+    </p-card> -->
+</p-panel>

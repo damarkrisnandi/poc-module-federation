@@ -10,13 +10,13 @@ sharedMappings.register(
 
 module.exports = {
   output: {
-    uniqueName: "mainPageApp",
+    uniqueName: "mfeApp",
     publicPath: "auto",
     scriptType:"text/javascript"
   },
   optimization: {
     runtimeChunk: false
-  },
+  },   
   resolve: {
     alias: {
       ...sharedMappings.getAliases(),
@@ -30,27 +30,28 @@ module.exports = {
         // library: { type: "module" },
 
         // For remotes (please adjust)
-        name: "mainPageApp",
+        name: "mfeApp",
         filename: "remoteEntry.js",
         exposes: {
-            './MainModule': './src/app/main/main.module.ts',
-            './ContactModule': './src/app/contact/contact.module.ts',
-        },
-
+            './Posting': './src/app/main/posting/posting.component.ts',
+        },        
+        
         // For hosts (please adjust)
-        remotes: {
-            "mfeApp": "mfeApp@http://localhost:4204/remoteEntry.js",
-        },
+        // remotes: {
+        //     "hostApp": "http://localhost:4200/remoteEntry.js",
+        //     "mainPageApp": "http://localhost:4203/remoteEntry.js",
+
+        // },
 
         shared: share({
-          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
           "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
 
           ...sharedMappings.getDescriptors()
         })
-
+        
     }),
     sharedMappings.getPlugin()
   ],
