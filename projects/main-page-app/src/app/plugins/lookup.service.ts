@@ -7,7 +7,7 @@ export class LookupService {
         return Promise.resolve([
             {
                 // type: 'module',
-                // remoteEntry: 'http://localhost:4204/remoteEntry.js',
+                remoteEntry: 'http://localhost:4204/remoteEntry.js',
                 remoteName: 'mfeApp',
                 exposedModule: './Posting',
 
